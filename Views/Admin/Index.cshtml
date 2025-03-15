@@ -1,0 +1,54 @@
+﻿@model List<TruYum_APP.Models.MenuItem>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Menu Items Details:</h2>
+<div class="container mt-5">
+    <a href="~/" class="btn btn-success">Add Menu Item</a>
+
+</div>
+@*<div class="container mt-5">
+    <a href="~/Admin/Add" class="btn btn-success">Add Menu Item</a>
+</div>*@
+<div class="container mt-5">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Free Delivery</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    string status = item.IsActive ? "Active" : "InActive";
+                    string freedelivery = item.FreeDelivery ? "Yes" : "No";
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Category</td>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@status</td>
+                        <td>@item.FreeDelivery</td>
+                        <td>
+                            <a href="~/Admin/Edit?id=@item.Id" class="btn btn-warning">Edit</a>
+                            &nbsp;
+                            <a href="~/Admin/Delete?id=@item.Id" class="btn btn-danger">Delete</a>
+                        </td>
+
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+
